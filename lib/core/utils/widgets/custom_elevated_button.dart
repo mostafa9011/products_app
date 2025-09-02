@@ -31,7 +31,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.buttonAlignment = Alignment.center,
     this.width = 1,
     this.shadow = false,
-    this.height = 60,
+    this.height = 45,
     this.borderRadius = 16,
     this.borderColor,
     this.textColor,
@@ -51,7 +51,7 @@ class CustomElevatedButton extends StatelessWidget {
       height: context.isTablet ? 65.h : height.h,
       width: width == 1 ? width.sw : width.w,
       child: ElevatedButton(
-        style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
+        style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
               backgroundColor: WidgetStateProperty.all<Color>(
                 isDisabled
                     ? Theme.of(context).colorScheme.onSecondary

@@ -8,7 +8,9 @@ import 'config/config_cubit/config_cubit.dart';
 import 'config/routes/page_name.dart';
 import 'config/routes/route_manager.dart';
 import 'config/themes/color_manager.dart';
+import 'core/helpers/cache_helper.dart';
 import 'core/utils/dependency_injection/di.dart';
+import 'core/utils/keys_manager.dart';
 import 'core/utils/size_manager.dart';
 
 class MyApp extends StatelessWidget {
@@ -43,7 +45,11 @@ class MyApp extends StatelessWidget {
                       darkTheme: darkTheme,
                       themeMode: ConfigCubit.themeMode,
                       navigatorKey: RouteManager.navigatorKey,
-                      initialRoute: PageName.homeScreen,
+                      initialRoute:
+                          CacheHelper.getBoolData(KeysManager.isLoggedIn) ==
+                                  true
+                              ? PageName.homeScreen
+                              : PageName.loginScreen,
                       onGenerateRoute: RouteManager.onGenerateRoute,
                     );
                   },

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import '../../features/auth/presentation/screens/login_screen.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
 import 'page_name.dart';
 
@@ -12,6 +13,12 @@ class RouteManager {
       case PageName.homeScreen:
         return _getPageTransition(
           const HomeScreen(),
+          settings: routeSettings,
+        );
+
+      case PageName.loginScreen:
+        return _getPageTransition(
+          const LoginScreen(),
           settings: routeSettings,
         );
 
