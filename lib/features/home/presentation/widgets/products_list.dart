@@ -7,14 +7,14 @@ import '../bloc/home_bloc.dart';
 import '../dialogs/users_error_dialog.dart';
 import 'product_card.dart';
 
-class UsersList extends StatefulWidget {
-  const UsersList({super.key});
+class ProductsList extends StatefulWidget {
+  const ProductsList({super.key});
 
   @override
-  State<UsersList> createState() => _UsersListState();
+  State<ProductsList> createState() => _ProductsListState();
 }
 
-class _UsersListState extends State<UsersList> {
+class _ProductsListState extends State<ProductsList> {
   @override
   void initState() {
     super.initState();

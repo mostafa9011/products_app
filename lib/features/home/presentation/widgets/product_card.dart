@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/themes/app_theme.dart';
 import '../../domain/entities/product_entity.dart';
-import 'custom_user_data_row.dart';
+import 'custom_favorite_icon.dart';
+import 'custom_price_and_rate.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductEntity product;
@@ -21,25 +23,33 @@ class ProductCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
+            const CustomFavoriteIcon(),
+            Align(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: SizedBox(
+                  height: 150.h,
+                  width: 150.w,
+                  child: Image.network(
+                    product.image,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
             Text(
               product.title,
               style: TextStyles.bold16W700(context),
             ),
             const SizedBox(height: 8),
-            CustomUserDataRow(
-              icon: Icons.email,
-              text: product.description,
+            Text(
+              product.description,
+              style: TextStyles.regular14W400(context),
+              maxLines: 3,
             ),
             const SizedBox(height: 8),
-            CustomUserDataRow(
-              icon: Icons.phone,
-              text: product.category,
-            ),
-            const SizedBox(height: 8),
-            CustomUserDataRow(
-              icon: Icons.location_on,
-              text: product.price.toString(),
-            ),
+            CustomPriceAndRate(product: product),
           ],
         ),
       ),

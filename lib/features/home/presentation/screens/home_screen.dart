@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utils/dependency_injection/di.dart';
 import '../bloc/home_bloc.dart';
-import '../widgets/toggle_theme_icon.dart';
-import '../widgets/users_list.dart';
+import '../widgets/products_list.dart';
+import '../widgets/fav_icon.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,14 +15,14 @@ class HomeScreen extends StatelessWidget {
       create: (context) => getIt<HomeBloc>(),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Users'),
+          title: const Text('Products'),
           centerTitle: true,
           automaticallyImplyLeading: false,
           actions: const [
-            ToggleThemeIcon(),
+            FavIcon(),
           ],
         ),
-        body: const UsersList(),
+        body: const ProductsList(),
       ),
     );
   }
