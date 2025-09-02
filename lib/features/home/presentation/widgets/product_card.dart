@@ -8,8 +8,13 @@ import 'custom_price_and_rate.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductEntity product;
+  final bool isFavoriteScreen;
 
-  const ProductCard({required this.product, super.key});
+  const ProductCard({
+    required this.product,
+    this.isFavoriteScreen = false,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +28,10 @@ class ProductCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            const CustomFavoriteIcon(),
+            CustomFavoriteIcon(
+              product: product,
+              isFavoriteScreen: isFavoriteScreen,
+            ),
             Align(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(16),

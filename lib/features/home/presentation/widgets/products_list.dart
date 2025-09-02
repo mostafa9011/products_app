@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../../../config/themes/app_theme.dart';
 import '../../../../core/utils/widgets/spinket_loader.dart';
+import '../../domain/entities/product_entity.dart';
 import '../bloc/home_bloc.dart';
 import '../dialogs/users_error_dialog.dart';
 import 'product_card.dart';
@@ -18,14 +20,14 @@ class _ProductsListState extends State<ProductsList> {
   @override
   void initState() {
     super.initState();
-    context.read<HomeBloc>().add(GetUsersEvent());
+    context.read<HomeBloc>().add(GetProductsEvent());
   }
 
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () async {
-        context.read<HomeBloc>().add(GetUsersEvent());
+        context.read<HomeBloc>().add(GetProductsEvent());
       },
       child: BlocConsumer<HomeBloc, HomeState>(
         listener: (context, state) {
@@ -57,14 +59,29 @@ class _ProductsListState extends State<ProductsList> {
           }
 
           // success state
-          final users = state.users ?? [];
+          final products = state.products ?? [];
+          final _productsBox =
+              Hive.box<ProductEntity>('products').values.toList();
+
+          _productsBox.forEach((favProduct) {
+            for (var product in products) {
+              if (product.id == favProduct.id) {
+                product.isFavorite = true;
+                break;
+              }
+            }
+          });
+
           return ListView.builder(
             padding: EdgeInsets.zero,
-            itemCount: users.length,
+            itemCount: products.length,
             itemBuilder: (context, index) {
-              final user = users[index];
+              final product = products[index];
 
-              return ProductCard(product: user);
+              return ProductCard(
+                key: ValueKey(product.id),
+                product: product,
+              );
             },
           );
         },

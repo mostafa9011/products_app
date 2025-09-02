@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../config/routes/page_name.dart';
 import '../../../../core/utils/dependency_injection/di.dart';
 import '../bloc/home_bloc.dart';
 import '../widgets/products_list.dart';
-import '../widgets/fav_icon.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -18,8 +18,22 @@ class HomeScreen extends StatelessWidget {
           title: const Text('Products'),
           centerTitle: true,
           automaticallyImplyLeading: false,
-          actions: const [
-            FavIcon(),
+          actions: [
+            Builder(
+              builder: (context) {
+                final bloc = context.read<HomeBloc>();
+                return IconButton(
+                  icon: const Icon(Icons.favorite),
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      PageName.favoriteScreen,
+                      arguments: bloc,
+                    );
+                  },
+                );
+              },
+            ),
           ],
         ),
         body: const ProductsList(),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import '../../features/auth/presentation/screens/login_screen.dart';
+import '../../features/home/presentation/bloc/home_bloc.dart';
+import '../../features/home/presentation/screens/favorite_screen.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
 import 'page_name.dart';
 
@@ -19,6 +21,16 @@ class RouteManager {
       case PageName.loginScreen:
         return _getPageTransition(
           const LoginScreen(),
+          settings: routeSettings,
+        );
+
+      case PageName.favoriteScreen:
+        final homeBloc = routeSettings.arguments as HomeBloc;
+
+        return _getPageTransition(
+          FavoriteScreen(
+            homeBloc: homeBloc,
+          ),
           settings: routeSettings,
         );
 

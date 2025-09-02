@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 
+import '../../../../core/utils/functions/kprint.dart';
 import '../../domain/entities/product_entity.dart';
 import '../../domain/usecases/get_products_use_case.dart';
 
@@ -11,7 +12,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   HomeBloc(this._getUsersUseCase)
       : super(HomeState(status: HomeStatus.initial)) {
-    on<GetUsersEvent>((event, emit) async {
+    on<GetProductsEvent>((event, emit) async {
       emit(state.copyWith(status: HomeStatus.loading));
 
       final result = await _getUsersUseCase();
@@ -25,9 +26,26 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             ),
           );
         },
-        (users) {
-          emit(state.copyWith(status: HomeStatus.success, users: users));
+        (products) {
+          emit(state.copyWith(status: HomeStatus.success, products: products));
         },
+      );
+    });
+
+    on<UpdateProductsEvent>((event, emit) async {
+      final updatedProducts = state.products?.map((product) {
+        if (product.id == event.product.id) {
+          product = event.product;
+          kprint('Product favorite become : ${product.isFavorite}');
+        }
+        return product;
+      }).toList();
+
+      emit(
+        state.copyWith(
+          status: HomeStatus.productsUpdated,
+          products: updatedProducts,
+        ),
       );
     });
   }

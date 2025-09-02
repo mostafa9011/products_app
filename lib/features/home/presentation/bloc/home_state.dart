@@ -1,27 +1,33 @@
 part of 'home_bloc.dart';
 
-enum HomeStatus { initial, loading, success, failure }
+enum HomeStatus {
+  initial,
+  loading,
+  success,
+  failure,
+  productsUpdated,
+}
 
 class HomeState {
   final HomeStatus status;
   final String? message;
-  final List<ProductEntity>? users;
+  final List<ProductEntity>? products;
 
   HomeState({
     required this.status,
     this.message,
-    this.users,
+    this.products,
   });
 
   HomeState copyWith({
     required HomeStatus status,
     String? message,
-    List<ProductEntity>? users,
+    List<ProductEntity>? products,
   }) {
     return HomeState(
       status: status,
       message: message ?? this.message,
-      users: users ?? this.users,
+      products: products ?? this.products,
     );
   }
 
@@ -29,4 +35,5 @@ class HomeState {
   bool get isLoading => status == HomeStatus.loading;
   bool get isSuccess => status == HomeStatus.success;
   bool get isFailure => status == HomeStatus.failure;
+  bool get isProductsUpdated => status == HomeStatus.productsUpdated;
 }

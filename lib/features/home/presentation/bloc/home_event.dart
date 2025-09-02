@@ -2,4 +2,10 @@ part of 'home_bloc.dart';
 
 abstract class HomeEvent {}
 
-class GetUsersEvent extends HomeEvent {}
+class GetProductsEvent extends HomeEvent {}
+
+class UpdateProductsEvent extends HomeEvent {
+  final ProductEntity product;
+
+  UpdateProductsEvent(this.product);
+}
