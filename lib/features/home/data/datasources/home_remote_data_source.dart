@@ -1,10 +1,10 @@
 import '../../../../core/api/dio_consumer.dart';
 import '../../../../core/api/end_points.dart';
-import '../../domain/entities/user_entity.dart';
-import '../models/user_model/user_model.dart';
+import '../../domain/entities/product_entity.dart';
+import '../models/product_model/product_model.dart';
 
 abstract class HomeRemoteDataSource {
-  Future<List<UserEntity>> getUsers();
+  Future<List<ProductEntity>> getProducts();
 }
 
 class HomeRemoteDataSourceImp implements HomeRemoteDataSource {
@@ -13,13 +13,13 @@ class HomeRemoteDataSourceImp implements HomeRemoteDataSource {
   HomeRemoteDataSourceImp(this._dioConsumer);
 
   @override
-  Future<List<UserEntity>> getUsers() async {
-    final response = await _dioConsumer.get(path: EndPoints.users);
+  Future<List<ProductEntity>> getProducts() async {
+    final response = await _dioConsumer.get(path: EndPoints.products);
 
-    final users = (response as List).map((json) {
-      return UserModel.fromJson(json);
+    final products = (response as List).map((json) {
+      return ProductModel.fromJson(json);
     }).toList();
 
-    return users;
+    return products;
   }
 }

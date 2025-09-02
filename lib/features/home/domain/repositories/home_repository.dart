@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/errors/failures.dart';
-import '../entities/user_entity.dart';
+import '../entities/product_entity.dart';
 
 abstract class HomeRepository {
-  Future<Either<Failure, List<UserEntity>>> getUsers();
+  Future<Either<Failure, List<ProductEntity>>> getProducts();
 }

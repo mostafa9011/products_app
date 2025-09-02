@@ -5,7 +5,7 @@ import '../../../../config/themes/app_theme.dart';
 import '../../../../core/utils/widgets/spinket_loader.dart';
 import '../bloc/home_bloc.dart';
 import '../dialogs/users_error_dialog.dart';
-import 'user_card.dart';
+import 'product_card.dart';
 
 class UsersList extends StatefulWidget {
   const UsersList({super.key});
@@ -64,7 +64,7 @@ class _UsersListState extends State<UsersList> {
             itemBuilder: (context, index) {
               final user = users[index];
 
-              return UserCard(user: user);
+              return ProductCard(product: user);
             },
           );
         },

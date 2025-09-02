@@ -5,7 +5,7 @@ enum HomeStatus { initial, loading, success, failure }
 class HomeState {
   final HomeStatus status;
   final String? message;
-  final List<UserEntity>? users;
+  final List<ProductEntity>? users;
 
   HomeState({
     required this.status,
@@ -16,7 +16,7 @@ class HomeState {
   HomeState copyWith({
     required HomeStatus status,
     String? message,
-    List<UserEntity>? users,
+    List<ProductEntity>? users,
   }) {
     return HomeState(
       status: status,
