@@ -1,17 +1,16 @@
-# Users Task Project
+# Products Task Project
 
-This Flutter project demonstrates fetching users from an API with different UI states:
-- Loading state
-- Users list state
-- Failure state
-- Dark theme style
+This Flutter project demonstrates fetching Products from an API with different UI states:
+- Favotite state
+- Products list state
+- Login state
 
 ## 📸 Screenshots
 
-| Loading | Users List |
+| Favorite | Products List |
 |---------|------------|
-| <img src="assets/screenshots/loading.png" width="250"> | <img src="assets/screenshots/success.png" width="250"> |
+| <img src="assets/screenshots/favorite.png" width="250"> | <img src="assets/screenshots/products.png" width="250"> |
 
-| Failure | Dark Theme |
-|---------|------------|
-| <img src="assets/screenshots/failure.png" width="250"> | <img src="assets/screenshots/dark_theme.png" width="250"> |
+| Login |
+|---------|
+| <img src="assets/screenshots/login.png" width="250"> 
